@@ -20,7 +20,7 @@ pipeline {
                 script {
                     env.GITHUB_USER = sh(script: "sed -n '1p' /tmp/shortname.txt",returnStdout: true).trim()
                     env.SHORT_COMMIT= env.GIT_COMMIT[0..7]
-                    env.TAG_NAME="docker.pkg.github.com/$GITHUB_USER/pet-clinic/petclinic:$SHORT_COMMIT"
+                    env.TAG_NAME="docker.pkg.github.com/$GITHUB_USER/pet-clinic/petclinic:$SHORT_COMMIT".toLowerCase()
                 }
                 sh "docker build -t $TAG_NAME -f Dockerfile.deploy ."
                 sh "sed -n '2p' /tmp/shortname.txt | docker login https://docker.pkg.github.com -u $GITHUB_USER --password-stdin"
