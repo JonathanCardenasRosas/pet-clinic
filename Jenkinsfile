@@ -28,7 +28,7 @@ pipeline {
                 sh "sed -n '2p' /tmp/shortname.txt | docker login https://docker.pkg.github.com -u $GITHUB_USER --password-stdin"
                 sh "docker push $TAG_NAME"
             }
-        }
+        } 
 
         stage('Deploy Development') {
             agent any
