@@ -76,15 +76,14 @@ pipeline {
         }
 
         stage("End to End Tests") {
-            when {
-                branch 'master'
-            }
-            agent any
-            steps {
-                sh "chmod +x robot.sh"
-                sh "./robot.sh"
-            }
-        }
-
+           when {
+                  branch 'master'
+           }
+           agent any
+           steps {
+                  sh "chmod +x robot.sh"
+                  sh "./robot.sh"
+          }
+       }    
     }
 }
